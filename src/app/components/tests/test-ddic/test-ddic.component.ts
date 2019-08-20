@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassesService } from "../../../services/classes/classes.service";
+import { DdicService } from "../../../services/ddic/ddic.service";
 
 @Component({
   selector: 'app-test-ddic',
@@ -7,20 +8,36 @@ import { ClassesService } from "../../../services/classes/classes.service";
   styleUrls: ['./test-ddic.component.scss']
 })
 export class TestDDICComponent {
-  testObject: any = "zd_tkstatus";
+  testClassName: any = "ycl_tickets_manager_admin";
+  testDdicObject: any = "zd_tkstatus";
+  class: any;
   ddic: any;
 
-  constructor(private classesService: ClassesService) { 
-    this.getInfoDDIC();
+  constructor(
+    private classService: ClassesService,
+    private ddicService: DdicService
+    ) { 
+    this.getInfoClass(); 
+    //this.getInfoDDIC();
+  }
+
+  getInfoClass(){
+    this.classService.testGetAllInfoClass(this.testClassName).subscribe( result => {
+      this.class = result;
+      console.log(this.class);
+    },
+    error => {
+      console.log("Error aqui CLASS --> "+JSON.stringify(error));
+    });
   }
 
   getInfoDDIC(){
-    this.classesService.testGetAllInfoDDIC(this.testObject).subscribe( result => {
+    this.ddicService.testGetAllInfoDDIC(this.testDdicObject).subscribe( result => {
       this.ddic = result;
       console.log(this.ddic);
     },
     error => {
-      console.log("Error aqui --> "+JSON.stringify(error));
+      console.log("Error aqui DDIC --> "+JSON.stringify(error));
     });
   }
 

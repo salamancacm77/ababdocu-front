@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestDDICComponent } from './components/tests/test-ddic/test-ddic.component';
 import { ClassesService } from './services/classes/classes.service';
+import { DdicService } from './services/ddic/ddic.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,13 @@ import { ClassesService } from './services/classes/classes.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [ClassesService],
+  providers: [
+    DdicService,
+    ClassesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

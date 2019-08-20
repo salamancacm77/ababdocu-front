@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassesService {
+export class DdicService {
 
   constructor(private httpClient: HttpClient) { }
   
-  testGetAllInfoClass(className): Observable<any> {
+  testGetAllInfoDDIC(ddicObject): Observable<any> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -18,10 +18,9 @@ export class ClassesService {
       })
     };
 
-    const path = 'http://localhost:8000/35.184.254.201:8000/sap/bc/sofka/abapdocu/class/info/'+ className +'?sap-client=800';
+    const path = 'http://localhost:8000/35.184.254.201:8000/sap/bc/sofka/abapdocu/ddic/info/'+ ddicObject +'?sap-client=800';
 
     return this.httpClient.get(path, httpOptions);
 
   }
-
 }
