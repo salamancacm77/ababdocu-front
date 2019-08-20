@@ -8,11 +8,13 @@ import { TestDDICComponent } from './components/tests/test-ddic/test-ddic.compon
 import { ClassesService } from './services/classes/classes.service';
 import { DdicService } from './services/ddic/ddic.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestClassComponent } from './components/tests/test-class/test-class.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestDDICComponent
+    TestDDICComponent,
+    TestClassComponent
   ],
   imports: [
     BrowserModule,

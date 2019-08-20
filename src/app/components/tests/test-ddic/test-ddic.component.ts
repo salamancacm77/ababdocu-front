@@ -9,7 +9,7 @@ import { DdicService } from "../../../services/ddic/ddic.service";
 })
 export class TestDDICComponent {
   testClassName: any = "ycl_tickets_manager_admin";
-  testDdicObject: any = "zd_tkstatus";
+  testDdicObject: any = "uname";
   class: any;
   ddic: any;
 
