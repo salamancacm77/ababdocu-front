@@ -5,3 +5,7 @@
 3. Correr `node proxy.js` en la raiz del proyecto
 4. Correr `ng serve -o`
 5. Cuando se abre la ventana del proyecto verificar en la consola que esté respondiendo el servicio
+
+# Para pruebas
+## URL para probar
+https://abapdocu.appspot.com/
