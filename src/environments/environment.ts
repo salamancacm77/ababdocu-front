@@ -3,7 +3,25 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+};
+
+export const api = {
+  //Datos para conexión
+  //Basic Authentication
+  user: 'sergiom',
+  passUser: 'qwerty123',
+  //URL Localhost (URL + Port)
+  urlLocalhost: 'http://localhost:8000',
+  //Datos de servidor SAP (URL + Port)
+  urlServer: '/35.184.254.201:8000',
+  //Datos de servicio
+  //Ruta principal
+  mainService: '/sap/bc/sofka/abapdocu',
+  //Ruta para clases
+  classesService: '/class/info',
+  //Datos Mandante
+  mandt: '/?sap-client=800'
 };
 
 /*
