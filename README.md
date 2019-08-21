@@ -6,6 +6,5 @@
 4. Correr `ng serve -o`
 5. Cuando se abre la ventana del proyecto verificar en la consola que esté respondiendo el servicio
 
-# Para pruebas
-## URL para probar
+## Para pruebas (no locales) 
 Solo haz [click aquí](https://abapdocu.appspot.com/)
