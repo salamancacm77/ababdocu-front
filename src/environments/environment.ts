@@ -20,6 +20,7 @@ export const api = {
   mainService: '/sap/bc/sofka/abapdocu',
   //Ruta para clases
   classesService: '/class/info/',
+  classAttributes: '/class/attributes/',
   //Datos Mandante
   mandt: '?sap-client=800'
 };
