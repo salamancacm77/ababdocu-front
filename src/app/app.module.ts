@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClassesService } from './services/classes/classes.service';
 import { DdicService } from './services/ddic/ddic.service';
+import { MethodsService } from "../app/services/classes/methods/methods.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -16,11 +17,13 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ClassInfoComponent } from './pages/classes/class-info/class-info.component';
+import { MethodsInfoComponent } from './pages/classes/methods-info/methods-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClassInfoComponent,
+    MethodsInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { ClassInfoComponent } from './pages/classes/class-info/class-info.compon
   ],
   providers: [
     DdicService,
-    ClassesService
+    ClassesService,
+    MethodsService
   ],
   bootstrap: [AppComponent]
 })

@@ -21,6 +21,7 @@ export const api = {
   //Ruta para clases
   classesService: '/class/info/',
   classAttributes: '/class/attributes/',
+  classMethods: '/class/methods/',
   //Datos Mandante
   mandt: '?sap-client=800'
 };

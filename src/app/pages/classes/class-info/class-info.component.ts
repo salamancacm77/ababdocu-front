@@ -19,7 +19,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ClassInfoComponent{
 
-  testClassName: any = "ycl_tickets_manager_admin";
+  className: any = "ycl_tickets_manager_admin";
   class: any;
   attributes: any;
   durationWarning = 5;
@@ -44,7 +44,7 @@ export class ClassInfoComponent{
   }
 
   getInfoClass(){
-    this.classService.testGetAllInfoClass(this.testClassName).subscribe( result => {
+    this.classService.getClassInfo(this.className).subscribe( result => {
       this.class = result;
       console.log(this.class);
     },
@@ -56,7 +56,7 @@ export class ClassInfoComponent{
 
   getClassAttributes(){
     this.spinner.show();
-    this.attributesService.getClassAttributes(this.testClassName).subscribe( result => {
+    this.attributesService.getClassAttributes(this.className).subscribe( result => {
       let attrs = result["ATTRIBUTES"];
       let att = attrs[0];
       this.attributes = attrs;

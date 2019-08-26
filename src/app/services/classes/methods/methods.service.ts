@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { api } from "../../../environments/environment";
+import { api } from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClassesService {
+export class MethodsService {
 
   constructor(private httpClient: HttpClient) { }
   
-  getClassInfo(className): Observable<any> {
+  getAllMethods(className): Observable<any> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -19,10 +19,8 @@ export class ClassesService {
       })
     };
 
-    const path = api.urlLocalhost + api.urlServer + api.mainService + api.classesService + className + api.mandt;
+    const path = api.urlLocalhost + api.urlServer + api.mainService + api.classMethods + className + api.mandt;
 
     return this.httpClient.get(path, httpOptions);
-
-  }
-
+}
 }
