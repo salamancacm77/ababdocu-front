@@ -23,8 +23,9 @@ export class MethodsInfoComponent {
   methods: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
-  columnsToDisplay = ['ATTRIBUTE', 'LEVEL', 'DESCRIPTION', 'VISIBILITY'];
-  expandedElement: attElement | null;
+  displayedColumns = ['NAME', 'DESCR', 'TYPE'];
+  expandedElement: methElement | null;
+  panelOpenState = false;
 
   constructor(
     private methodsService: MethodsService,
@@ -41,12 +42,17 @@ export class MethodsInfoComponent {
   }
 
   getClassMethods() {
+
     this.spinner.show();
-    this.methodsService.getAllMethods(this.className).subscribe( result => {
-      let meth = result["METHODS_DATA"];
+
+    this.methodsService.getAllMethods(this.className).subscribe(result => {
+      
+      let meth:any[] = result["METHODS_DATA"];
+
       this.methods = meth;
       this.spinner.hide();
       console.log(meth);
+
     },
       error => {
         this.showSnackBar(this.warningMessage + " getClassMethods");
@@ -57,16 +63,9 @@ export class MethodsInfoComponent {
 
 }
 
-export interface attElement {
-  attribute: string;
-  level: string;
-  visibility: string;
-  readonly: string;
-  typing: string;
-  associatedType: string;
-  description: string;
-  initialvalue: string;
-  created_by: string;
-  created_on: string;
-  code: string;
+export interface methElement {
+  NAME: string;
+  DESCR: string;
+  TYPE: string;
+
 }
