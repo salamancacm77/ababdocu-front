@@ -3,13 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { MethodsService } from './services/classes/methods/methods.service';
-<<<<<<< HEAD
 import { EventsService } from './services/classes/events/events.service';
 import { InheritanceService } from './services/classes/inheritance/inheritance.service';
-=======
-import { InheritanceService } from './services/classes/inheritance/inheritance.service';
 import{ AppConstants} from '../app/constants'
->>>>>>> dev
 
 
 @Component({
