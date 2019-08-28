@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { MethodsService } from './services/classes/methods/methods.service';
+import { EventsService } from './services/classes/events/events.service';
 
 
 @Component({
@@ -25,9 +26,11 @@ export class AppComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private methodsService: MethodsService
+    private methodsService: MethodsService,
+    private eventsService: EventsService
   ) {
     this.validateClassMethods();
+    this.validateClassEvents();
   }
 
   validateClassMethods() {
@@ -39,6 +42,18 @@ export class AppComponent {
       }
     },(error) => {
       console.log("Error validateClassMethods() --> " + JSON.stringify(error));
+    });
+  }
+
+  validateClassEvents() {
+    this.eventsService.getAllEvents(this.className).subscribe((result) => {
+      if (result.length > 0) {
+        return this.showMenuOption = true;
+      } else {
+        return this.showMenuOption = false;
+      }
+    },(error) => {
+      console.log("Error validateClassEvents() --> " + JSON.stringify(error));
     });
   }
 }

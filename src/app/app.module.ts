@@ -11,26 +11,26 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ClassInfoComponent } from './pages/classes/class-info/class-info.component';
 import { MethodsInfoComponent } from './pages/classes/methods-info/methods-info.component';
+import { EventsInfoComponent } from './pages/classes/events-info/events-info.component';
 
-import { ClassesService } from './services/classes/classes.service';
 import { DdicService } from './services/ddic/ddic.service';
+import { ClassesService } from './services/classes/classes.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
-
-import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { EventsService } from './services/classes/events/events.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
+    EventsInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     DdicService,
     ClassesService,
-    MethodsService
+    MethodsService, 
+    EventsService
   ],
   bootstrap: [AppComponent]
 })
