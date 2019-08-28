@@ -19,7 +19,7 @@
   }
   
   tr.table-element-row:not(.table-expanded-row):hover {
-    background: #777;
+    background: rgb(190, 188, 188);
   }
   
   tr.table-element-row:not(.table-expanded-row):active {
@@ -44,23 +44,24 @@
     height: 104px;
   }
   
-  .table-element-symbol {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
-  }
-  
   .table-element-description {
     padding: 16px;
   }
   
-  .table-element-description-attribution {
-    opacity: 0.5;
-  }
-
   mat-chip {
     transition: none !important;
     box-shadow: none !important;
 }
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.separated-card{
+  padding: 20px;
+}
+
   
   
