@@ -11,6 +11,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -23,12 +24,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClassInfoComponent } from './pages/classes/class-info/class-info.component';
 import { MethodsInfoComponent } from './pages/classes/methods-info/methods-info.component';
+import { EventsInfoComponent } from './pages/classes/events-info/events-info.component';
 
-import { ClassesService } from './services/classes/classes.service';
 import { DdicService } from './services/ddic/ddic.service';
+import { ClassesService } from './services/classes/classes.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
+import { TypesInfoService } from "../app/services/classes/types-info/types-info.service";
+import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
+import { EventsService } from './services/classes/events/events.service';
 
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
 
 
@@ -37,6 +41,8 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
+    TypesInfoComponent,
+    EventsInfoComponent,
     InheritanceComponent,
   ],
   imports: [
@@ -66,7 +72,9 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
   providers: [
     DdicService,
     ClassesService,
-    MethodsService
+    MethodsService,
+    TypesInfoService,
+    EventsService
   ],
   bootstrap: [AppComponent]
 })
