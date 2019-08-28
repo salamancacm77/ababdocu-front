@@ -8,7 +8,7 @@ import { InheritanceService } from "../../../services/classes/inheritance/inheri
 import{ AppConstants} from '../../../constants'
 
 @Component({
-  selector: 'app-inheritance',
+  selector: 'app-inheritance', 
   templateUrl: './inheritance.component.html',
   styleUrls: ['./inheritance.component.scss']
 })
