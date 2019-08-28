@@ -3,6 +3,7 @@ import { MethodsService } from "../../../services/classes/methods/methods.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
+import{ AppConstants} from '../../../constants'
 
 @Component({
   selector: 'app-methods-info',
@@ -18,15 +19,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 
 export class MethodsInfoComponent {
-
-  className: any = "ycl_tickets_manager_admin";
+// Se declaran las variables a usar en el componente methods-info
+  className: any = AppConstants.className;
   methods: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
   displayedColumns = ['NAME', 'DESCR', 'TYPE'];
-  expandedElement: methElement | null;
   panelOpenState = false;
-
+// Método constructor
   constructor(
     private methodsService: MethodsService,
     private _snackBar: MatSnackBar,
@@ -34,27 +34,29 @@ export class MethodsInfoComponent {
   ) {
     this.getClassMethods();
   }
-
+// Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: this.durationWarning * 1000,
     });
   }
-
+// Método para obtener los métodos de una clase
   getClassMethods() {
-
+// Se muestra el spinner de carga
     this.spinner.show();
-
+// Se invoca el servicio para obtener los métodos
     this.methodsService.getAllMethods(this.className).subscribe(result => {
-      
+      // Se extrae el objeto METHODS_DATA del JSON
       let meth:any[] = result["METHODS_DATA"];
-
+// Se asigna el resultado a la variable correspondiente
       this.methods = meth;
+      //Se oculta el spinner de carga
       this.spinner.hide();
       console.log(meth);
 
     },
       error => {
+        //Si ocurre un error se muestra en un snackBar y en la consola del navegador
         this.showSnackBar(this.warningMessage + " getClassMethods");
         console.log("Error getClassMethods() --> " + JSON.stringify(error));
         this.spinner.hide();

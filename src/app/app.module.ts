@@ -12,6 +12,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+import { CovalentLayoutModule } from '@covalent/core/layout';
+import { CovalentStepsModule  } from '@covalent/core/steps';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,12 +31,16 @@ import { ClassesService } from './services/classes/classes.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
 import { EventsService } from './services/classes/events/events.service';
 
+import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
     EventsInfoComponent,
+    InheritanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,11 @@ import { EventsService } from './services/classes/events/events.service';
     MatTableModule,
     NgxSpinnerModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTreeModule,
+    CovalentLayoutModule,
+    CovalentStepsModule,
+    MatGridListModule
   ],
   providers: [
     DdicService,

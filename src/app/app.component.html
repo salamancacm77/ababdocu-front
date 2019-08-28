@@ -6,11 +6,11 @@
       <mat-toolbar color="primary">ABAPDocu</mat-toolbar>
       <mat-nav-list>
         <a mat-list-item [routerLink]="['classInfo']">Clase</a>
-        <a mat-list-item [routerLink]="['classMethods']" *ngIf="showMenuOption">Métodos</a>
         <a mat-list-item [routerLink]="['classEvents']" *ngIf="showMenuOption">Eventos</a>
+        <a mat-list-item [routerLink]="['classMethods']" *ngIf="showMethodsOption">Métodos</a>
         <a mat-list-item href="#">Tipos</a>
         <a mat-list-item href="#">Friendships</a>
-        <a mat-list-item href="#">Herencia</a>
+        <a mat-list-item [routerLink]="['classInheritance']" *ngIf="showInheritanceOption">Herencia</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

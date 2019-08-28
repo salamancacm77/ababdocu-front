@@ -3,7 +3,13 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { MethodsService } from './services/classes/methods/methods.service';
+<<<<<<< HEAD
 import { EventsService } from './services/classes/events/events.service';
+import { InheritanceService } from './services/classes/inheritance/inheritance.service';
+=======
+import { InheritanceService } from './services/classes/inheritance/inheritance.service';
+import{ AppConstants} from '../app/constants'
+>>>>>>> dev
 
 
 @Component({
@@ -12,33 +18,50 @@ import { EventsService } from './services/classes/events/events.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  className: any = "ycl_tickets_manager_admin";
+// Se declaran las variables para usar en el componente principal
+  className: any = AppConstants.className;
+  //className: any = "zcl_abapdocu_rest_handler";
   title = 'ABAPDocu';
   methods: any;
-  showMenuOption: boolean;
+  showMethodsOption: boolean;
+  showInheritanceOption: boolean;
+  showEventsOption: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       share()
     );
-
+// Método constructor
   constructor(
     private breakpointObserver: BreakpointObserver,
     private methodsService: MethodsService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private inhetitanceService: InheritanceService
   ) {
     this.validateClassMethods();
-    this.validateClassEvents();
+    this.validateClassEvents();   
+    this.validateClassInheritance();
   }
 
   validateClassMethods() {
     this.methodsService.getAllMethods(this.className).subscribe((result) => {
       if (result.METHODS_DATA.length > 0) {
-        return this.showMenuOption = true;
+        return this.showMethodsOption = true;
       } else {
-        return this.showMenuOption = false;
+        return this.showMethodsOption = false;
+      }
+    },(error) => {
+      console.log("Error validateClassMethods() --> " + JSON.stringify(error));
+    });
+  }
+
+  validateClassInheritance() {
+    this.inhetitanceService.getClassInheritance(this.className).subscribe((result) => {
+      if (result.INHERITANCE.CLASS_UP !== '') {
+        return this.showInheritanceOption = true;
+      } else {
+        return this.showInheritanceOption = false;
       }
     },(error) => {
       console.log("Error validateClassMethods() --> " + JSON.stringify(error));
@@ -48,9 +71,9 @@ export class AppComponent {
   validateClassEvents() {
     this.eventsService.getAllEvents(this.className).subscribe((result) => {
       if (result.length > 0) {
-        return this.showMenuOption = true;
+        return this.showEventsOption = true;
       } else {
-        return this.showMenuOption = false;
+        return this.showEventsOption = false;
       }
     },(error) => {
       console.log("Error validateClassEvents() --> " + JSON.stringify(error));

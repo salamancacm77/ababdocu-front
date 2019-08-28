@@ -27,12 +27,28 @@
       <div class="table-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div class="table-element-description">
 
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip>Tipo: {{ element.TYPING }}</mat-chip>
-            <mat-chip>Tipo Asociado: {{ element.ASSOCIATEDTYPE }}</mat-chip>
-            <mat-chip>Creado por: {{ element.CREATED_BY }}</mat-chip>
-            <mat-chip>Fecha de creación: {{ element.CREATED_ON }}</mat-chip>
-          </mat-chip-list>
+          <div class="card-container">
+            <div class="separated-card">
+              <mat-card>
+                <mat-card-subtitle> Tipo: {{ element.TYPING }} </mat-card-subtitle>
+              </mat-card>
+            </div>
+            <div class="separated-card">
+              <mat-card>
+                <mat-card-subtitle> Tipo Asociado: {{ element.ASSOCIATEDTYPE }} </mat-card-subtitle>
+              </mat-card>
+            </div>
+            <div class="separated-card">
+              <mat-card>
+                <mat-card-subtitle> Creado por: {{ element.CREATED_BY }} </mat-card-subtitle>
+              </mat-card>
+            </div>
+            <div class="separated-card">
+              <mat-card>
+                <mat-card-subtitle> Fecha de creación: {{ element.CREATED_ON }} </mat-card-subtitle>
+              </mat-card>
+            </div>
+          </div>
 
         </div>
       </div>
