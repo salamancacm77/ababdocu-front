@@ -22,8 +22,9 @@ import { MethodsInfoComponent } from './pages/classes/methods-info/methods-info.
 import { ClassesService } from './services/classes/classes.service';
 import { DdicService } from './services/ddic/ddic.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
-
+import { TypesInfoService } from "../app/services/classes/types-info/types-info.service";
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
+    TypesInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     DdicService,
     ClassesService,
-    MethodsService
+    MethodsService,
+    TypesInfoService
   ],
   bootstrap: [AppComponent]
 })
