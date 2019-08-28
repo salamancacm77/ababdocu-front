@@ -11,6 +11,11 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+import { CovalentLayoutModule } from '@covalent/core/layout';
+import { CovalentStepsModule  } from '@covalent/core/steps';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +29,7 @@ import { DdicService } from './services/ddic/ddic.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
 
 
 @NgModule({
@@ -31,6 +37,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
+    InheritanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatTableModule,
     NgxSpinnerModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTreeModule,
+    CovalentLayoutModule,
+    CovalentStepsModule,
+    MatGridListModule
   ],
   providers: [
     DdicService,
