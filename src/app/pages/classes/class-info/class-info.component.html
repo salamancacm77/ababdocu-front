@@ -10,12 +10,12 @@
     <mat-chip-list aria-label="Fish selection">
       <mat-chip color="primary" selected>Visibilidad: {{ class?.CLASS_DATA.EXPOSURE }}</mat-chip>
       <mat-chip>Creado por: {{ class?.CLASS_DATA.CREATED_BY }}</mat-chip>
-      <mat-chip>Fecha Creación: {{ class?.CLASS_DATA.CREATED_ON }}</mat-chip>
+      <mat-chip>Fecha Creación: {{ class?.CLASS_DATA.CREATED_ON | dateFormatYYYYMMDD }}</mat-chip>
     </mat-chip-list>
   </mat-card-content>
 </mat-card>
 
-<table mat-table [dataSource]="attributes" multiTemplateDataRows class="mat-elevation-z8">
+<table mat-table [dataSource]="attributes" multiTemplateDataRows class="mat-elevation-z8" *ngIf="attributes?.length>0">
   <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
     <th mat-header-cell *matHeaderCellDef> {{column}} </th>
     <td mat-cell mat-cell *matCellDef="let element"> {{element[column]}}</td>
@@ -45,7 +45,7 @@
             </div>
             <div class="separated-card">
               <mat-card>
-                <mat-card-subtitle> Fecha de creación: {{ element.CREATED_ON }} </mat-card-subtitle>
+                <mat-card-subtitle> Fecha de creación: {{ element.CREATED_ON | dateFormatYYYYMMDD }} </mat-card-subtitle>
               </mat-card>
             </div>
           </div>
@@ -62,3 +62,8 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="table-detail-row"></tr>
 </table>
+
+<div class="emptyAttContainer" *ngIf="!attributes?.length>0">
+    <mat-icon>event_busy</mat-icon> 
+    <span class="aligned-with-icon">No posee atributos</span>
+</div>

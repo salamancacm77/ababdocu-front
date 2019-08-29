@@ -28,3 +28,14 @@ mat-form-field {
 ::ng-deep .mat-form-field-underline {
   display: none;
 }
+
+.aligned-with-icon{
+  position: relative;
+  top: -5px;
+  margin-left: 5px; /* optional */
+  margin-left: 5px; /* optional */
+}
+
+.emptyParamContainer{
+  margin-top: 5px;
+}
