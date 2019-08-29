@@ -26,6 +26,7 @@ export class MethodsInfoComponent {
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
   displayedColumns = ['NAME', 'DESCR', 'TYPE'];
   panelOpenState = false;
+  showParameters: boolean;
 // Método constructor
   constructor(
     private methodsService: MethodsService,

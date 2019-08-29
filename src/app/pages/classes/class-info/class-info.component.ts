@@ -3,6 +3,7 @@ import { ClassesService } from "../../../services/classes/classes.service";
 import { AttributesService } from "../../../services/classes/attributes/attributes.service";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import{ AppConstants} from '../../../constants'
 
@@ -33,7 +34,7 @@ export class ClassInfoComponent{
     private classService: ClassesService,
     private attributesService: AttributesService,
     private _snackBar: MatSnackBar,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
     ) { 
     this.getInfoClass();
     this.getClassAttributes();

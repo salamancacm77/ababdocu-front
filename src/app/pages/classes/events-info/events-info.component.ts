@@ -23,8 +23,7 @@ export class EventsInfoComponent {
   events: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
-  displayedColumns = ['NAME', 'DESCR', 'TYPE'];
-  expandedElement: eventElement | null;
+  displayedColumns = ['EVENT', 'DESCRIPTION', 'LEVEL', 'VISIBILITY', 'CREATED_BY', 'CREATED_ON'];
   panelOpenState = false;
 
   constructor(
@@ -47,8 +46,6 @@ export class EventsInfoComponent {
 
     this.eventsService.getAllEvents(this.className).subscribe(result => {
       
-      //let event:any[] = result["EVENTS_DATA"];
-
       this.events = result;
       this.spinner.hide();
       console.log(result);
@@ -64,7 +61,10 @@ export class EventsInfoComponent {
 }
 
 export interface eventElement {
-  NAME: string;
-  DESCR: string;
-  TYPE: string;
+  EVENT: string;
+  DESCRIPTION: string;
+  LEVEL: string;
+  VISIBILITY: string;
+  CREATED_BY: string;
+  CREATED_ON: string;
 }

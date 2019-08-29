@@ -17,7 +17,6 @@ import { AppConstants} from '../app/constants';
 export class AppComponent {
 // Se declaran las variables para usar en el componente principal
   className: any = AppConstants.className;
-  //className: any = "zcl_abapdocu_rest_handler";
   title = 'ABAPDocu';
   methods: any;
   showMethodsOption: boolean;
@@ -75,7 +74,7 @@ export class AppComponent {
         return this.showInheritanceOption = false;
       }
     },(error) => {
-      console.log("Error validateClassMethods() --> " + JSON.stringify(error));
+      console.log("Error validateClassInheritance() --> " + JSON.stringify(error));
     });
   }
 
@@ -86,6 +85,7 @@ export class AppComponent {
       } else {
         return this.showEventsOption = false;
       }
+      console.log(result);
     },(error) => {
       console.log("Error validateClassEvents() --> " + JSON.stringify(error));
     });

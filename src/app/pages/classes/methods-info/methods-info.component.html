@@ -27,7 +27,7 @@
             <mat-chip>Estado: {{ method.STATE }}</mat-chip>
         </mat-chip-list>
 
-        <table mat-table [dataSource]="method.PARAMETER" class="mat-elevation-z8">
+        <table mat-table [dataSource]="method.PARAMETER" class="mat-elevation-z8" *ngIf="method.PARAMETER.length>0">
 
             <ng-container matColumnDef="NAME">
                 <th mat-header-cell *matHeaderCellDef> Parámetro </th>
@@ -47,5 +47,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+        <div class="emptyParamContainer" *ngIf="!method.PARAMETER.length>0">
+            <mat-icon>event_busy</mat-icon> 
+            <span class="aligned-with-icon">No posee parámetros</span>
+        </div>
+
     </mat-expansion-panel>
 </mat-accordion>

@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static className: string = "YCL_TICKETS_MANAGER";
+    public static className: string = "ZCL_DOC_GENERATOR_SRICO";
 }
