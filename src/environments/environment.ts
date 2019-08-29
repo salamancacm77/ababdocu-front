@@ -22,6 +22,7 @@ export const api = {
   classesService: '/class/info/',
   classAttributes: '/class/attributes/',
   classMethods: '/class/methods/',
+  classTypes: '/class/types/',
   classEvents: '/class/events/',
   classInheritance: '/class/inheritance/',
   //Datos Mandante

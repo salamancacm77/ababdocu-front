@@ -3,9 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { MethodsService } from './services/classes/methods/methods.service';
-import { EventsService } from './services/classes/events/events.service';
+import { TypesInfoService } from './services/classes/types-info/types-info.service';
 import { InheritanceService } from './services/classes/inheritance/inheritance.service';
-import{ AppConstants} from '../app/constants'
+import { EventsService } from './services/classes/events/events.service';
+import { AppConstants} from '../app/constants';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AppComponent {
   showMethodsOption: boolean;
   showInheritanceOption: boolean;
   showEventsOption: boolean;
+  showMenuTypes: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,11 +34,14 @@ export class AppComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private methodsService: MethodsService,
+    private TypesInfoService: TypesInfoService,
     private eventsService: EventsService,
     private inhetitanceService: InheritanceService
   ) {
     this.validateClassMethods();
-    this.validateClassEvents();   
+    this.validateClasstypes();
+    
+      this.validateClassEvents();   
     this.validateClassInheritance();
   }
 
@@ -52,6 +57,17 @@ export class AppComponent {
     });
   }
 
+  validateClasstypes() {
+    this.TypesInfoService.getAllTypes(this.className).subscribe((result) => {
+      if (result.length > 0) {
+        return this.showMenuTypes = true;
+      } else {
+        return this.showMenuTypes = false;
+      }
+    },(error) => {
+      console.log("Error validateClassTypes() --> " + JSON.stringify(error));
+    });
+  }
   validateClassInheritance() {
     this.inhetitanceService.getClassInheritance(this.className).subscribe((result) => {
       if (result.INHERITANCE.CLASS_UP !== '') {

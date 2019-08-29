@@ -29,6 +29,8 @@ import { EventsInfoComponent } from './pages/classes/events-info/events-info.com
 import { DdicService } from './services/ddic/ddic.service';
 import { ClassesService } from './services/classes/classes.service';
 import { MethodsService } from "../app/services/classes/methods/methods.service";
+import { TypesInfoService } from "../app/services/classes/types-info/types-info.service";
+import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
 import { EventsService } from './services/classes/events/events.service';
 
 import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
@@ -39,6 +41,7 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
     AppComponent,
     ClassInfoComponent,
     MethodsInfoComponent,
+    TypesInfoComponent,
     EventsInfoComponent,
     InheritanceComponent,
   ],
@@ -69,7 +72,8 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
   providers: [
     DdicService,
     ClassesService,
-    MethodsService, 
+    MethodsService,
+    TypesInfoService,
     EventsService
   ],
   bootstrap: [AppComponent]
