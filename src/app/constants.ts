@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static className: string = "YCL_TICKETS_MANAGER";
+    public static className: string = "ycl_tickets_manager_admin";
 }

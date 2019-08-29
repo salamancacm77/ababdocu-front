@@ -32,8 +32,10 @@ import { MethodsService } from "../app/services/classes/methods/methods.service"
 import { TypesInfoService } from "../app/services/classes/types-info/types-info.service";
 import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
 import { EventsService } from './services/classes/events/events.service';
+import { DatePipe } from '@angular/common';
 
 import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
     TypesInfoComponent,
     EventsInfoComponent,
     InheritanceComponent,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { InheritanceComponent } from './pages/classes/inheritance/inheritance.co
     ClassesService,
     MethodsService,
     TypesInfoService,
-    EventsService
+    EventsService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
