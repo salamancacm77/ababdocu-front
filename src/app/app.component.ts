@@ -86,6 +86,7 @@ export class AppComponent {
       } else {
         return this.showEventsOption = false;
       }
+      console.log(result);
     },(error) => {
       console.log("Error validateClassEvents() --> " + JSON.stringify(error));
     });
