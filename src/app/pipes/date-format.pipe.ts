@@ -19,6 +19,8 @@ export class DateFormatPipe implements PipeTransform {
       return this.datePipe.transform(date, format);
 
     } else {
+      date = "";
+      return this.datePipe.transform(date, format);
       return 'ERROR'
     }
   }

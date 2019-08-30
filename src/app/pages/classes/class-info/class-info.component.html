@@ -7,8 +7,8 @@
     <mat-card-subtitle>Descripción: {{ class?.CLASS_DATA.DESCRIPTION }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-chip-list aria-label="Fish selection">
-      <mat-chip color="primary" selected>Visibilidad: {{ class?.CLASS_DATA.EXPOSURE }}</mat-chip>
+    <mat-chip-list>
+      <mat-chip>Visibilidad: {{ class?.CLASS_DATA.EXPOSURE }}</mat-chip>
       <mat-chip>Creado por: {{ class?.CLASS_DATA.CREATED_BY }}</mat-chip>
       <mat-chip>Fecha Creación: {{ class?.CLASS_DATA.CREATED_ON | dateFormatYYYYMMDD }}</mat-chip>
     </mat-chip-list>

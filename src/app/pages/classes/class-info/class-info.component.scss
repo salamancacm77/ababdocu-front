@@ -51,6 +51,7 @@
   mat-chip {
     transition: none !important;
     box-shadow: none !important;
+    pointer-events: none;
 }
 
 .card-container {
