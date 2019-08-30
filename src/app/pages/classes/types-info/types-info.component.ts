@@ -3,6 +3,7 @@ import { TypesInfoService } from "../../../services/classes/types-info/types-inf
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AppConstants} from '../../../constants';
 
 @Component({
   selector: 'app-types-info',
@@ -17,15 +18,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
   ],
 })
 export class TypesInfoComponent {
-
-  className: any = "ycl_tickets_manager_admin";
+// Se declaran las variables a usar en el componente methods-info
+  className: any = AppConstants.className;
   types: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
-  displayedColumns = ['NAME', 'DESCR', 'TYPE'];
-  expandedElement: typeElement | null;
+  displayedColumns = ['NAME', 'DESCRIPTION', 'VISIBILITY', 'STATE', 'AUTHOR', 'CREATED', 'CHANGEBY', 'TYPIF'];
   panelOpenState = false;
-
+// Método constructor
   constructor(
     private TypesInfoService : TypesInfoService,
     private _snackBar: MatSnackBar,
@@ -33,20 +33,19 @@ export class TypesInfoComponent {
   ) {
     this.getClassTypes();
   }
-
+// Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: this.durationWarning * 1000,
     });
   }
-
+// Método para obtener los tipos de una clase
   getClassTypes() {
-
+// Se muestra el spinner de carga
     this.spinner.show();
-
+// Se invoca el servicio para obtener los typos
     this.TypesInfoService.getAllTypes(this.className).subscribe(result => {
-      
-     // let c_types:any[] = result;
+     //let c_types:any[] = result[0];
 
       this.types = result;
       this.spinner.hide();
@@ -54,17 +53,22 @@ export class TypesInfoComponent {
 
     },
       error => {
+        //Si ocurre un error se muestra en un snackBar y en la consola del navegador
         this.showSnackBar(this.warningMessage + " getClassTypes");
         console.log("Error getClassTypes() --> " + JSON.stringify(error));
         this.spinner.hide();
       });
   }
 
-} 
+}
 
 export interface typeElement {
   NAME: string;
-  DESCR: string;
-  TYPE: string;
-
+  DESCRIPTION: string;
+  VISIBILITY: string;
+  STATE: string;
+  AUTHOR: string;
+  CREATED: string;
+  CHANGEBY: string;
+  TYPIF: string;
 }

@@ -39,8 +39,7 @@ export class AppComponent {
   ) {
     this.validateClassMethods();
     this.validateClasstypes();
-    
-      this.validateClassEvents();   
+    this.validateClassEvents();
     this.validateClassInheritance();
   }
 

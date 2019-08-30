@@ -3,7 +3,7 @@ import { MethodsService } from "../../../services/classes/methods/methods.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
-import{ AppConstants} from '../../../constants'
+import { AppConstants} from '../../../constants';
 
 @Component({
   selector: 'app-methods-info',
