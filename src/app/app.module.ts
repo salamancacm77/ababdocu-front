@@ -1,8 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
+
+/***
+ * UI
+***/
+
+/* Angular Material */
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
@@ -15,26 +21,37 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatGridListModule} from '@angular/material/grid-list';
 
-import { CovalentLayoutModule } from '@covalent/core/layout';
-import { CovalentStepsModule  } from '@covalent/core/steps';
-
-
+/***
+ * Routes
+***/
 import { AppRoutingModule } from './app-routing.module';
 
+/***
+ * Components
+***/
 import { AppComponent } from './app.component';
+
+/* Pages */
 import { ClassInfoComponent } from './pages/classes/class-info/class-info.component';
 import { MethodsInfoComponent } from './pages/classes/methods-info/methods-info.component';
 import { EventsInfoComponent } from './pages/classes/events-info/events-info.component';
+import { FriendsInfoComponent } from './pages/classes/friends-info/friends-info.component';
+import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
+import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
 
+/***
+ * Service Providers
+***/
 import { DdicService } from './services/ddic/ddic.service';
 import { ClassesService } from './services/classes/classes.service';
-import { MethodsService } from "../app/services/classes/methods/methods.service";
-import { TypesInfoService } from "../app/services/classes/types-info/types-info.service";
-import { TypesInfoComponent } from './pages/classes/types-info/types-info.component';
+import { MethodsService } from '../app/services/classes/methods/methods.service';
+import { TypesInfoService } from '../app/services/classes/types-info/types-info.service';
 import { EventsService } from './services/classes/events/events.service';
 import { DatePipe } from '@angular/common';
 
-import { InheritanceComponent } from './pages/classes/inheritance/inheritance.component';
+/***
+ * Pipes
+***/
 import { DateFormatPipe } from './pipes/date-format.pipe';
 
 
@@ -47,6 +64,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     EventsInfoComponent,
     InheritanceComponent,
     DateFormatPipe,
+    FriendsInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +86,6 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatExpansionModule,
     MatDividerModule,
     MatTreeModule,
-    CovalentLayoutModule,
-    CovalentStepsModule,
     MatGridListModule
   ],
   providers: [
