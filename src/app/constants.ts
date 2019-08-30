@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static className: string = "ZCL_DOC_GENERATOR_SRICO";
+    public static className = 'ZCL_DOCU_GENERATOR_EMESA';
 }

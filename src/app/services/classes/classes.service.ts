@@ -15,7 +15,7 @@ export class ClassesService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${btoa(api.user+':'+api.passUser)}`
+        'Authorization': `Basic ${ btoa(api.user + ':' + api.passUser) }`
       })
     };
 // Se arma la URL del servicio con variables del ambiente de desarrollo
