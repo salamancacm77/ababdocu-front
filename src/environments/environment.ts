@@ -7,25 +7,26 @@ export const environment = {
 };
 
 export const api = {
-  //Datos para conexión
-  //Basic Authentication
+  // Datos para conexión
+  // Basic Authentication
   user: 'sergiom',
   passUser: 'qwerty123',
-  //URL Localhost (URL + Port)
+  // URL Localhost (URL + Port)
   urlLocalhost: 'http://localhost:8000',
-  //Datos de servidor SAP (URL + Port)
+  // Datos de servidor SAP (URL + Port)
   urlServer: '/35.184.254.201:8000',
-  //Datos de servicio
-  //Ruta principal
+  // Datos de servicio
+  // Ruta principal
   mainService: '/sap/bc/sofka/abapdocu',
-  //Ruta para clases
+  // Ruta para clases
   classesService: '/class/info/',
   classAttributes: '/class/attributes/',
   classMethods: '/class/methods/',
   classTypes: '/class/types/',
   classEvents: '/class/events/',
+  classFriends: '/class/friends/',
   classInheritance: '/class/inheritance/',
-  //Datos Mandante
+  // Datos Mandante
   mandt: '?sap-client=800'
 };
 
