@@ -6,7 +6,7 @@
             <a mat-list-item [routerLink]="['classMethods']" *ngIf="showMethodsOption">Métodos</a>
             <a mat-list-item [routerLink]="['classEvents']" *ngIf="showEventsOption">Eventos</a>
             <a mat-list-item [routerLink]="['classTypes']" *ngIf="showMenuTypes">Tipos</a>
-            <a mat-list-item href="#">Friendships</a>
+            <a mat-list-item [routerLink]="['classFriends']" *ngIf="showFriendsOption">Friendships</a>
             <a mat-list-item [routerLink]="['classInheritance']" *ngIf="showInheritanceOption">Herencia</a>
         </mat-nav-list>
     </mat-sidenav>

@@ -5,7 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
-import{ AppConstants} from '../../../constants'
+import { AppConstants} from '../../../constants'
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 

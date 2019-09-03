@@ -48,11 +48,12 @@ import { ClassesService } from './services/classes/classes.service';
 import { MethodsService } from '../app/services/classes/methods/methods.service';
 import { TypesInfoService } from '../app/services/classes/types-info/types-info.service';
 import { EventsService } from './services/classes/events/events.service';
-import { DatePipe } from '@angular/common';
+import { FriendsService } from './services/classes/friends/friends.service';
 
 /***
  * Pipes
 ***/
+import { DatePipe } from '@angular/common';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 
 
@@ -96,6 +97,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MethodsService,
     TypesInfoService,
     EventsService,
+    FriendsService,
     DatePipe
   ],
   bootstrap: [AppComponent]

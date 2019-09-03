@@ -7,6 +7,7 @@ import { TypesInfoService } from './services/classes/types-info/types-info.servi
 import { InheritanceService } from './services/classes/inheritance/inheritance.service';
 import { EventsService } from './services/classes/events/events.service';
 import { AppConstants} from '../app/constants';
+import { FriendsService } from './services/classes/friends/friends.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class AppComponent {
   showInheritanceOption: boolean;
   showEventsOption: boolean;
   showMenuTypes: boolean;
+  showFriendsOption: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -35,11 +37,13 @@ export class AppComponent {
     private methodsService: MethodsService,
     private TypesInfoService: TypesInfoService,
     private eventsService: EventsService,
+    private friendsService: FriendsService,
     private inhetitanceService: InheritanceService
   ) {
     this.validateClassMethods();
     this.validateClasstypes();
     this.validateClassEvents();
+    this.validateClassFriends();
     this.validateClassInheritance();
   }
 
@@ -90,4 +94,18 @@ export class AppComponent {
       console.log("Error validateClassEvents() --> " + JSON.stringify(error));
     });
   }
+
+  validateClassFriends() {
+    this.friendsService.getClassFriends(this.className).subscribe((result) => {
+      if (result.length > 0) {
+        return this.showFriendsOption = true;
+      } else {
+        return this.showFriendsOption = false;
+      }
+      console.log(result);
+    }, (error) => {
+      console.log('Error validateClassFriends() --> ' + JSON.stringify(error));
+    });
+  }
+
 }
