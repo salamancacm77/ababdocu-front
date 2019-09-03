@@ -30,7 +30,7 @@ export class ClassInfoComponent{
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
   columnsToDisplay = ['ATTRIBUTE', 'LEVEL', 'DESCRIPTION', 'VISIBILITY'];
   expandedElement: attElement | null;
-  displayedColumns = ['TYPING', 'ASSOCIATEDTYPE', 'CREATED_BY', 'CREATED_ON'];
+  displayedColumns = ['ATTRIBUTE', 'LEVEL', 'DESCRIPTION', 'VISIBILITY', 'TYPING', 'ASSOCIATEDTYPE'];
 // Método constructor
   constructor(
     private classService: ClassesService,

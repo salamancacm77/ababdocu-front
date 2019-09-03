@@ -15,52 +15,40 @@
   </mat-card-content>
 </mat-card>
 
-<table mat-table [dataSource]="attributes" multiTemplateDataRows class="mat-elevation-z8" *ngIf="attributes?.length>0">
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell mat-cell *matCellDef="let element"> {{element[column]}}</td>
-  </ng-container>
+<table mat-table [dataSource]="attributes" class="mat-elevation-z8" *ngIf="attributes?.length>0">
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-      <div class="table-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <div class="table-element-description">
+    <ng-container matColumnDef="ATTRIBUTE">
+        <th mat-header-cell *matHeaderCellDef> Atributo </th>
+        <td mat-cell *matCellDef="let element"> {{element.ATTRIBUTE}} </td>
+    </ng-container>
 
-          <div class="card-container">
-            <div class="separated-card">
-              <mat-card>
-                <mat-card-subtitle> Tipo: {{ element.TYPING }} </mat-card-subtitle>
-              </mat-card>
-            </div>
-            <div class="separated-card">
-              <mat-card>
-                <mat-card-subtitle> Tipo Asociado: {{ element.ASSOCIATEDTYPE }} </mat-card-subtitle>
-              </mat-card>
-            </div>
-            <div class="separated-card">
-              <mat-card>
-                <mat-card-subtitle> Creado por: {{ element.CREATED_BY }} </mat-card-subtitle>
-              </mat-card>
-            </div>
-            <div class="separated-card">
-              <mat-card>
-                <mat-card-subtitle> Fecha de creación: {{ element.CREATED_ON | dateFormatYYYYMMDD }} </mat-card-subtitle>
-              </mat-card>
-            </div>
-          </div>
+    <ng-container matColumnDef="DESCRIPTION">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{element.DESCRIPTION}} </td>
+    </ng-container>
 
-        </div>
-      </div>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="LEVEL">
+        <th mat-header-cell *matHeaderCellDef> Clase </th>
+        <td mat-cell *matCellDef="let element"> {{element.LEVEL}} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="table-element-row"
-    [class.example-expanded-row]="expandedElement === element"
-    (click)="expandedElement = expandedElement === element ? null : element">
-  </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="table-detail-row"></tr>
+    <ng-container matColumnDef="VISIBILITY">
+        <th mat-header-cell *matHeaderCellDef> Visibilidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.VISIBILITY}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TYPING">
+        <th mat-header-cell *matHeaderCellDef> Tipificación </th>
+        <td mat-cell *matCellDef="let element"> {{element.TYPING}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ASSOCIATEDTYPE">
+        <th mat-header-cell *matHeaderCellDef> Tipo Asociado </th>
+        <td mat-cell *matCellDef="let element"> {{element.ASSOCIATEDTYPE}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
 <div class="emptyAttContainer" *ngIf="!attributes?.length>0">
