@@ -12,6 +12,10 @@ const routes: Routes = [
     component: ClassInfoComponent
   },
   {
+    path: 'classInfo/:id',
+    component: ClassInfoComponent
+  },
+  {
     path: 'classMethods',
     component: MethodsInfoComponent
   },

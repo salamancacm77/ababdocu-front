@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static className = 'ZCL_DOCU_GENERATOR_EMESA';
+    public static className: string = "ycl_tickets_manager_admin";
 }

@@ -20,6 +20,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 /***
  * Routes
@@ -86,7 +87,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatExpansionModule,
     MatDividerModule,
     MatTreeModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTabsModule
   ],
   providers: [
     DdicService,

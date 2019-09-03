@@ -6,6 +6,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import{ AppConstants} from '../../../constants'
+import { Route } from '@angular/compiler/src/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-class-info',
@@ -35,9 +37,14 @@ export class ClassInfoComponent{
     private attributesService: AttributesService,
     private _snackBar: MatSnackBar,
     private spinner: NgxSpinnerService,
+    private route: ActivatedRoute
     ) { 
     this.getInfoClass();
     this.getClassAttributes();
+    this.route.paramMap.subscribe(params => {
+      console.log(params);
+    })
+
   }
 // Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
