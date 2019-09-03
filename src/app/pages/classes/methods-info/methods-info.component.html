@@ -18,12 +18,9 @@
                 {{ method.NAME }}
             </mat-panel-title>
             <mat-panel-description>
-                {{ method.DESCRIPTION }}
+                    {{ method.DESCRIPTION }}
 
-                <mat-chip-list>
-                        <mat-chip>Visibilidad: {{ method.VISIBILITY }}</mat-chip>
-                        <mat-chip>Estado: {{ method.STATE }}</mat-chip>
-                    </mat-chip-list>
+                <label>Visibilidad: {{ method.VISIBILITY }}</label>
                     
             </mat-panel-description>
         </mat-expansion-panel-header>

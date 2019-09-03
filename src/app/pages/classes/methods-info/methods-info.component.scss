@@ -8,6 +8,11 @@
   align-items: center;
 }
 
+label{
+  justify-content: space-between;
+  align-items: end;
+}
+
 mat-form-field {
   margin-right: 12px;
 }
