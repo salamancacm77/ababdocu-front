@@ -5,7 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { InheritanceService } from "../../../services/classes/inheritance/inheritance.service";
 
-import{ AppConstants} from '../../../constants'
+import { AppConstants} from '../../../constants';
 
 @Component({
   selector: 'app-inheritance', 
