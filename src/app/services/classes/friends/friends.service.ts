@@ -19,9 +19,8 @@ export class FriendsService {
       })
     };
 // Se arma la URL del servicio con variables del ambiente de desarrollo
-    const path = api.urlLocalhost + api.urlServer + api.mainService + api.classAttributes + className + api.mandt;
+    const path = api.urlLocalhost + api.urlServer + api.mainService + api.classFriends + className + api.mandt;
 // Se retorna la respuesta del servicio (JSON)
     return this.httpClient.get(path, httpOptions);
-
   }
 }
