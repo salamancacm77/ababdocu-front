@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { MethodsService } from './services/classes/methods/methods.service';
 import { TypesInfoService } from './services/classes/types-info/types-info.service';
 import { InheritanceService } from './services/classes/inheritance/inheritance.service';
+import { FriendsService } from './services/classes/friends/friends.service';
 import { EventsService } from './services/classes/events/events.service';
 import { AppConstants} from '../app/constants';
-import { FriendsService } from './services/classes/friends/friends.service';
-
 
 @Component({
   selector: 'app-root',
@@ -49,12 +48,13 @@ export class AppComponent {
 
   validateClassMethods() {
     this.methodsService.getAllMethods(this.className).subscribe((result) => {
+      console.log(result.METHODS_DATA.length);
       if (result.METHODS_DATA.length > 0) {
         return this.showMethodsOption = true;
       } else {
         return this.showMethodsOption = false;
       }
-    },(error) => {
+    }, (error) => {
       console.log("Error validateClassMethods() --> " + JSON.stringify(error));
     });
   }
@@ -97,14 +97,13 @@ export class AppComponent {
 
   validateClassFriends() {
     this.friendsService.getClassFriends(this.className).subscribe((result) => {
-      if (result.length > 0) {
+      if (result.FRIENDSHIPS.length > 0) {
         return this.showFriendsOption = true;
       } else {
         return this.showFriendsOption = false;
       }
-      console.log(result);
     }, (error) => {
-      console.log('Error validateClassFriends() --> ' + JSON.stringify(error));
+      console.log("Error validateClassFriends() --> " + JSON.stringify(error));
     });
   }
 
