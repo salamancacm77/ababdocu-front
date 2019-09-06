@@ -56,7 +56,7 @@ export class FriendsInfoComponent {
     this.spinner.show();
 
     this.friendsService.getClassFriends(this.className).subscribe( result => {
-      this.friends = result;
+      this.friends = result.FRIENDSHIPS;
       this.spinner.hide();
       console.log(result);
     },
