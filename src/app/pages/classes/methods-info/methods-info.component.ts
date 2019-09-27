@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MethodsService } from "../../../services/classes/methods/methods.service";
+import { SourcecodeService } from "../../../services/classes/methods/sourcecode/sourcecode.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -21,7 +22,9 @@ import { AppConstants} from '../../../constants';
 export class MethodsInfoComponent {
 // Se declaran las variables a usar en el componente methods-info
   className: any = AppConstants.className;
+  methodName: any = 'refresh_salv';
   methods: any;
+  methodCode: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
   displayedColumns = ['NAME', 'DESCR', 'TYPE'];
@@ -30,10 +33,12 @@ export class MethodsInfoComponent {
 // Método constructor
   constructor(
     private methodsService: MethodsService,
+    private sourceCodeService: SourcecodeService,
     private _snackBar: MatSnackBar,
     private spinner: NgxSpinnerService
   ) {
     this.getClassMethods();
+    this.getClassMethodCode();
   }
 // Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
@@ -60,6 +65,24 @@ export class MethodsInfoComponent {
         //Si ocurre un error se muestra en un snackBar y en la consola del navegador
         this.showSnackBar(this.warningMessage + " getClassMethods");
         console.log("Error getClassMethods() --> " + JSON.stringify(error));
+        this.spinner.hide();
+      });
+  }
+//Método para obtener código fuente de un método de una clase
+  getClassMethodCode(){
+// Se invoca el servicio para obtener el código fuente
+    this.sourceCodeService.getMethodCode(this.className, this.methodName).subscribe(result => {
+      // Se extrae el objeto LINE
+      //let line:any[] = result["LINE"];
+// Se asigna el resultado a la variable correspondiente
+      this.methodCode = result;
+      console.log(result);
+
+    },
+      error => {
+        //Si ocurre un error se muestra en un snackBar y en la consola del navegador
+        this.showSnackBar(this.warningMessage + " getClassMethodCode");
+        console.log("Error getClassMethodCode() --> " + JSON.stringify(error));
         this.spinner.hide();
       });
   }

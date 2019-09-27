@@ -18,49 +18,62 @@
                 {{ method.NAME }}
             </mat-panel-title>
             <mat-panel-description>
-                    {{ method.DESCRIPTION }}
+                {{ method.DESCRIPTION }}
 
                 <label>Visibilidad: {{ method.VISIBILITY }}</label>
-                    
+
             </mat-panel-description>
         </mat-expansion-panel-header>
 
-        
+
 
         <mat-tab-group>
             <mat-tab label="Parámetros">
-                    <table mat-table [dataSource]="method.PARAMETER" class="mat-elevation-z8" *ngIf="method.PARAMETER.length>0">
+                <table mat-table [dataSource]="method.PARAMETER" class="mat-elevation-z8"
+                    *ngIf="method.PARAMETER.length>0">
 
-                            <ng-container matColumnDef="NAME">
-                                <th mat-header-cell *matHeaderCellDef> Parámetro </th>
-                                <td mat-cell *matCellDef="let element"> {{element.NAME}} </td>
-                            </ng-container>
-                
-                            <ng-container matColumnDef="DESCR">
-                                <th mat-header-cell *matHeaderCellDef> Descripción </th>
-                                <td mat-cell *matCellDef="let element"> {{element.DESCR}} </td>
-                            </ng-container>
-                
-                            <ng-container matColumnDef="TYPE">
-                                <th mat-header-cell *matHeaderCellDef> Tipo </th>
-                                <td mat-cell *matCellDef="let element"> {{element.TYPE}} </td>
-                            </ng-container>
-                
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                        </table>
+                    <ng-container matColumnDef="NAME">
+                        <th mat-header-cell *matHeaderCellDef> Parámetro </th>
+                        <td mat-cell *matCellDef="let element"> {{element.NAME}} </td>
+                    </ng-container>
 
-                        <div class="emptyParamContainer" *ngIf="!method.PARAMETER.length>0">
-                                <mat-icon>event_busy</mat-icon> 
-                                <span class="aligned-with-icon">No posee parámetros</span>
-                            </div>
+                    <ng-container matColumnDef="DESCR">
+                        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                        <td mat-cell *matCellDef="let element"> {{element.DESCR}} </td>
+                    </ng-container>
 
-                </mat-tab>
-            <mat-tab label="Excepciones"> Aquí van las excepciones </mat-tab>
-            <mat-tab label="Código Fuente"> Aquí va el código fuente </mat-tab>
-          </mat-tab-group>
+                    <ng-container matColumnDef="TYPE">
+                        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.TYPE}} </td>
+                    </ng-container>
 
-        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <div class="emptyParamContainer" *ngIf="!method.PARAMETER.length>0">
+                    <mat-icon>event_busy</mat-icon>
+                    <span class="aligned-with-icon">No posee parámetros</span>
+                </div>
+
+            </mat-tab>
+
+            <mat-tab label="Excepciones">
+                Aquí van las excepciones
+            </mat-tab>
+
+            <mat-tab label="Código Fuente">
+                <ngx-prism language="html" *ngFor="let code of methodCode">
+                    {{ code.LINE}}
+                </ngx-prism>
+            </mat-tab>
+
+            <mat-tab label="Sugerencias">
+
+            </mat-tab>
+        </mat-tab-group>
+
+
 
     </mat-expansion-panel>
 </mat-accordion>

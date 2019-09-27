@@ -55,6 +55,11 @@ import { DatePipe } from '@angular/common';
 ***/
 import { DateFormatPipe } from './pipes/date-format.pipe';
 
+/***
+ * Others
+***/
+import { PrismModule } from '@ngx-prism/core';
+
 
 @NgModule({
   declarations: [
@@ -88,7 +93,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatDividerModule,
     MatTreeModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    PrismModule
   ],
   providers: [
     DdicService,

@@ -26,6 +26,7 @@ export const api = {
   classEvents: '/class/events/',
   classFriends: '/class/friends/',
   classInheritance: '/class/inheritance/',
+  sourceCodeClassMethod:'/class/sourcecode/',
   // Datos Mandante
   mandt: '?sap-client=800'
 };
