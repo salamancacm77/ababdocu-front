@@ -10,18 +10,15 @@
     </mat-card-content>
 </mat-card>
 
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="headers-align"
-        *ngFor="let method of methods">
+<mat-accordion *ngFor="let method of methods">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="headers-align">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{ method.NAME }}
             </mat-panel-title>
             <mat-panel-description>
                 {{ method.DESCRIPTION }}
-
                 <label>Visibilidad: {{ method.VISIBILITY }}</label>
-
             </mat-panel-description>
         </mat-expansion-panel-header>
 
@@ -63,17 +60,20 @@
             </mat-tab>
 
             <mat-tab label="Código Fuente">
-                <ngx-prism language="html" *ngFor="let code of methodCode">
+                <ngx-prism language="html" *ngFor="let code of method.CODE">
                     {{ code.LINE}}
                 </ngx-prism>
             </mat-tab>
 
-            <mat-tab label="Sugerencias">
-
+            <mat-tab label="% Documentación">
+                    <progress-bar [progress]="30" [color]="'#488aff'"></progress-bar>
             </mat-tab>
+
+            <mat-tab label="Sugerencias">
+                Aquí van las Sugerencias
+            </mat-tab>
+
         </mat-tab-group>
-
-
 
     </mat-expansion-panel>
 </mat-accordion>
