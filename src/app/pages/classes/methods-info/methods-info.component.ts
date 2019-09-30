@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MethodsService } from "../../../services/classes/methods/methods.service";
+import { SourcecodeService } from "../../../services/classes/methods/sourcecode/sourcecode.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -18,18 +19,23 @@ import { AppConstants} from '../../../constants';
   ],
 })
 
+
 export class MethodsInfoComponent {
 // Se declaran las variables a usar en el componente methods-info
   className: any = AppConstants.className;
+  elementsForEvaluation: any;
   methods: any;
+  methodCode: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
   displayedColumns = ['NAME', 'DESCR', 'TYPE'];
   panelOpenState = false;
   showParameters: boolean;
+
 // Método constructor
   constructor(
     private methodsService: MethodsService,
+    private sourceCodeService: SourcecodeService,
     private _snackBar: MatSnackBar,
     private spinner: NgxSpinnerService
   ) {
@@ -53,8 +59,8 @@ export class MethodsInfoComponent {
       this.methods = meth;
       //Se oculta el spinner de carga
       this.spinner.hide();
-      console.log(meth);
-
+      //console.log(meth);
+      this.evaluateMethodDocu(meth);
     },
       error => {
         //Si ocurre un error se muestra en un snackBar y en la consola del navegador
@@ -64,11 +70,22 @@ export class MethodsInfoComponent {
       });
   }
 
+  evaluateMethodDocu(jsonArray:any[]){
+    
+    jsonArray.forEach(element => {
+      let jsonObject = JSON.stringify(element);
+      console.log(jsonObject)
+    });
+
+   // var jsonObject = JSON.stringify(jsonArray);
+   // console.log(jsonObject);
+  }
+
 }
 
 export interface methElement {
   NAME: string;
   DESCR: string;
   TYPE: string;
-
 }
+

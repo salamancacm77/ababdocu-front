@@ -7,6 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  * UI
 ***/
 
+/***
+ * Bootstrap
+***/
+import {NgbModule, NgbProgressbarModule, NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+
 /* Angular Material */
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -56,6 +61,12 @@ import { FriendsService } from './services/classes/friends/friends.service';
 import { DatePipe } from '@angular/common';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 
+/***
+ * Others
+***/
+import { PrismModule } from '@ngx-prism/core';
+import {ProgressBarModule} from "angular-progress-bar"
+
 
 @NgModule({
   declarations: [
@@ -89,7 +100,11 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatDividerModule,
     MatTreeModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    PrismModule,
+    NgbModule,
+    NgbProgressbarModule,
+    ProgressBarModule
   ],
   providers: [
     DdicService,
