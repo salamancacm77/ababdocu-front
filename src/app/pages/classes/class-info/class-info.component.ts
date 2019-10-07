@@ -31,6 +31,7 @@ export class ClassInfoComponent{
   columnsToDisplay = ['ATTRIBUTE', 'LEVEL', 'DESCRIPTION', 'VISIBILITY'];
   expandedElement: attElement | null;
   displayedColumns = ['ATTRIBUTE', 'LEVEL', 'DESCRIPTION', 'VISIBILITY', 'TYPING', 'ASSOCIATEDTYPE'];
+  showAttributes: boolean;
 // Método constructor
   constructor(
     private classService: ClassesService,
@@ -74,6 +75,11 @@ export class ClassInfoComponent{
       // Se asigna el resultado a la variable correspondiente
       this.attributes = attrs;
       console.log(this.attributes);
+      if(this.attributes.length>0){
+        this.showAttributes = true;
+      }else{
+        this.showAttributes = false;
+      }
       //Se oculta el spinner de carga
       this.spinner.hide();
     },
