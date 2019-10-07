@@ -59,7 +59,6 @@ import { DatePipe } from '@angular/common';
  * Pipes
 ***/
 import { DateFormatPipe } from './pipes/date-format/date-format.pipe';
-import { MethodDocuPipe } from './pipes/method-docu/method-docu.pipe'
 
 /***
  * Others
@@ -79,7 +78,6 @@ import {ProgressBarModule} from "angular-progress-bar";
     InheritanceComponent,
     DateFormatPipe,
     FriendsInfoComponent,
-    MethodDocuPipe,
   ],
   imports: [
     BrowserModule,
