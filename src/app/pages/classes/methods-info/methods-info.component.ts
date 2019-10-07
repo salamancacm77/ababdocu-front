@@ -119,7 +119,7 @@ export class MethodsInfoComponent {
       element.CODE.forEach((line,i) => {
         if (line.LINE.includes(starComment) /*|| line.LINE.includes(quoteComment)*/) {
           delete line.LINE;
-          element.CODE.splice(i,1);
+          element.CODE.splice(i++,1);
         } else {
           line.LINE = line.LINE;
         }
