@@ -58,13 +58,15 @@ import { DatePipe } from '@angular/common';
 /***
  * Pipes
 ***/
-import { DateFormatPipe } from './pipes/date-format.pipe';
+import { DateFormatPipe } from './pipes/date-format/date-format.pipe';
+import { MethodDocuPipe } from './pipes/method-docu/method-docu.pipe'
 
 /***
  * Others
 ***/
 import { PrismModule } from '@ngx-prism/core';
-import {ProgressBarModule} from "angular-progress-bar"
+import {ProgressBarModule} from "angular-progress-bar";
+
 
 
 @NgModule({
@@ -77,6 +79,7 @@ import {ProgressBarModule} from "angular-progress-bar"
     InheritanceComponent,
     DateFormatPipe,
     FriendsInfoComponent,
+    MethodDocuPipe,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +114,8 @@ import {ProgressBarModule} from "angular-progress-bar"
     MethodsService,
     TypesInfoService,
     EventsService,
-    DatePipe
+    DatePipe,
+    DateFormatPipe
   ],
   bootstrap: [AppComponent]
 })

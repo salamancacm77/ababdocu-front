@@ -15,7 +15,7 @@
   </mat-card-content>
 </mat-card>
 
-<table mat-table [dataSource]="attributes" class="mat-elevation-z8" *ngIf="attributes?.length>0">
+<table mat-table [dataSource]="attributes" class="mat-elevation-z8" *ngIf="showAttributes">
 
     <ng-container matColumnDef="ATTRIBUTE">
         <th mat-header-cell *matHeaderCellDef> Atributo </th>
@@ -51,7 +51,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<div class="emptyAttContainer" *ngIf="!attributes?.length>0">
+<div class="emptyAttContainer" *ngIf="!showAttributes">
     <mat-icon>event_busy</mat-icon> 
     <span class="aligned-with-icon">No posee atributos</span>
 </div>
