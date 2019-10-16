@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
+import { ClassesService } from "../app/services/classes/classes.service";
 import { MethodsService } from './services/classes/methods/methods.service';
 import { TypesInfoService } from './services/classes/types-info/types-info.service';
 import { InheritanceService } from './services/classes/inheritance/inheritance.service';
 import { FriendsService } from './services/classes/friends/friends.service';
 import { EventsService } from './services/classes/events/events.service';
 import { AppConstants} from '../app/constants';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +18,10 @@ import { AppConstants} from '../app/constants';
 })
 export class AppComponent {
 // Se declaran las variables para usar en el componente principal
-  className: any = AppConstants.className;
+  className: any = this.setClassName();
   title = 'ABAPDocu';
   methods: any;
+  showClassOption: boolean;
   showMethodsOption: boolean;
   showInheritanceOption: boolean;
   showEventsOption: boolean;
@@ -32,6 +35,8 @@ export class AppComponent {
     );
 // Método constructor
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: WebStorageService,
+    private classService: ClassesService,
     private breakpointObserver: BreakpointObserver,
     private methodsService: MethodsService,
     private TypesInfoService: TypesInfoService,
@@ -39,11 +44,34 @@ export class AppComponent {
     private friendsService: FriendsService,
     private inhetitanceService: InheritanceService
   ) {
+    this.validateClass();
     this.validateClassMethods();
     this.validateClasstypes();
     this.validateClassEvents();
     this.validateClassFriends();
     this.validateClassInheritance();
+  }
+
+  setClassName(){
+    let classSet;
+    classSet  = localStorage.getItem("className");
+    if(classSet === null){
+      return '';
+    }else{
+    return classSet.replace(/["']/g, "");
+    }
+  }
+
+  validateClass() {
+    this.classService.getClassInfo(this.className).subscribe((result) => {
+      if (result.CLASS_DATA.NAME !== '') {
+        return this.showClassOption = true;
+      } else {
+        return this.showClassOption = false;
+      }
+    },(error) => {
+      //console.log("Error validateClass() --> " + JSON.stringify(error));
+    });
   }
 
   validateClassMethods() {
@@ -54,8 +82,8 @@ export class AppComponent {
       } else {
         return this.showMethodsOption = false;
       }
-    }, (error) => {
-      console.log("Error validateClassMethods() --> " + JSON.stringify(error));
+    },(error) => {
+      //console.log("Error validateClassMethods() --> " + JSON.stringify(error));
     });
   }
 
@@ -67,18 +95,18 @@ export class AppComponent {
         return this.showMenuTypes = false;
       }
     },(error) => {
-      console.log("Error validateClassTypes() --> " + JSON.stringify(error));
+      //console.log("Error validateClassTypes() --> " + JSON.stringify(error));
     });
   }
   validateClassInheritance() {
     this.inhetitanceService.getClassInheritance(this.className).subscribe((result) => {
-      if (result.INHERITANCE.CLASS_UP !== '') {
+      if (result.INHERITANCE.CLASS_UP.length > 0) {
         return this.showInheritanceOption = true;
       } else {
         return this.showInheritanceOption = false;
       }
     },(error) => {
-      console.log("Error validateClassInheritance() --> " + JSON.stringify(error));
+      //console.log("Error validateClassInheritance() --> " + JSON.stringify(error));
     });
   }
 
@@ -89,9 +117,8 @@ export class AppComponent {
       } else {
         return this.showEventsOption = false;
       }
-      console.log(result);
     },(error) => {
-      console.log("Error validateClassEvents() --> " + JSON.stringify(error));
+      //console.log("Error validateClassEvents() --> " + JSON.stringify(error));
     });
   }
 

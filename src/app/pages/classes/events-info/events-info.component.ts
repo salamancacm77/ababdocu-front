@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EventsService } from 'src/app/services/classes/events/events.service';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-events-info',
@@ -19,7 +21,7 @@ import { EventsService } from 'src/app/services/classes/events/events.service';
 
 export class EventsInfoComponent {
 
-  className: any = "ZCL_DOC_GENERATOR_SRICO";
+  className: any = this.setClassName();
   events: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
@@ -27,11 +29,26 @@ export class EventsInfoComponent {
   panelOpenState = false;
 
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: WebStorageService,
     private eventsService: EventsService,
     private _snackBar: MatSnackBar,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {
     this.getClassEvents();
+    if(this.className == ''){
+      this.router.navigate([''])
+    }
+  }
+
+  setClassName(){
+    let classSet;
+    classSet  = localStorage.getItem("className");
+    if(classSet === null || typeof classSet == undefined){
+      return '';
+    }else{
+    return classSet.replace(/["']/g, "");
+    }
   }
 
   showSnackBar(message: string) {

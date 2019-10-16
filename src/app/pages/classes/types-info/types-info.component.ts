@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TypesInfoService } from "../../../services/classes/types-info/types-info.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppConstants} from '../../../constants';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-types-info',
@@ -19,7 +21,7 @@ import { AppConstants} from '../../../constants';
 })
 export class TypesInfoComponent {
 // Se declaran las variables a usar en el componente methods-info
-  className: any = AppConstants.className;
+  className: any = this.setClassName();
   types: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
@@ -27,12 +29,28 @@ export class TypesInfoComponent {
   panelOpenState = false;
 // Método constructor
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: WebStorageService,
     private TypesInfoService : TypesInfoService,
     private _snackBar: MatSnackBar,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {
     this.getClassTypes();
+    if(this.className == ''){
+      this.router.navigate([''])
+    }
   }
+  
+  setClassName(){
+    let classSet;
+    classSet  = localStorage.getItem("className");
+    if(classSet === null || typeof classSet == undefined){
+      return '';
+    }else{
+    return classSet.replace(/["']/g, "");
+    }
+  }
+
 // Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
     this._snackBar.open(message, '', {
