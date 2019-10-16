@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MethodsService } from "../../../services/classes/methods/methods.service";
 import { SourcecodeService } from "../../../services/classes/methods/sourcecode/sourcecode.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,6 +6,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppConstants } from '../../../constants';
 import { DateFormatPipe } from "../../../pipes/date-format/date-format.pipe";
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-methods-info',
@@ -23,9 +25,9 @@ import { DateFormatPipe } from "../../../pipes/date-format/date-format.pipe";
 
 export class MethodsInfoComponent {
   // Se declaran las variables a usar en el componente methods-info
-  className: any = AppConstants.className;
+  className: any = this.setClassName();
   colorPercentDocBar = '#488aff';
-  numberPercentDocBar:any = 20;
+  numberPercentDocBar: any = 20;
   verifyMethodDesc: any;
   counterElementsDoc: any;
   elementsForEvaluation: any;
@@ -40,14 +42,30 @@ export class MethodsInfoComponent {
 
   // Método constructor
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: WebStorageService,
     private methodsService: MethodsService,
     private sourceCodeService: SourcecodeService,
     private _snackBar: MatSnackBar,
     private spinner: NgxSpinnerService,
-    private datePipe: DateFormatPipe
+    private datePipe: DateFormatPipe,
+    private router: Router
   ) {
     this.getClassMethods();
+    if(this.className == ''){
+      this.router.navigate([''])
+    }
   }
+
+  setClassName(){
+    let classSet;
+    classSet  = localStorage.getItem("className");
+    if(classSet === null || typeof classSet == undefined){
+      return '';
+    }else{
+    return classSet.replace(/["']/g, "");
+    }
+  }
+
   // Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -97,9 +115,9 @@ export class MethodsInfoComponent {
       console.log(element.CODE[0])*/
       console.log("Metodo " + element.NAME)
 
-      if(element.DESCRIPTION == ""){
+      if (element.DESCRIPTION == "") {
         console.log("Este método no tiene descripción")
-      }else {
+      } else {
         console.log("Este método si tiene descripción")
         this.verifyMethodDesc = "Este método posee descripción";
         counterMethodDesc = 1;
@@ -115,16 +133,24 @@ export class MethodsInfoComponent {
 
       });
       console.log("Tiene " + counterParamsDesc + " descripciones llenas")
-
-      element.CODE.forEach((line,i) => {
+      //console.log(Object.keys(element.CODE));
+      element.CODE.forEach(line => {
+ 
         if (line.LINE.includes(starComment) /*|| line.LINE.includes(quoteComment)*/) {
-          delete line.LINE;
-          element.CODE.splice(i++,1);
+          //delete line.LINE;
+            console.log("Imprimo indice")
+            console.log(element.CODE.indexOf(line))
+            //console.log(element.CODE.indexOf(line))
+            //element.CODE.splice(element.CODE.indexOf(line),0);
+            console.log("Elimino la line del indice "+element.CODE.indexOf(line))
+            element.CODE.splice(element.CODE.indexOf(line),element.CODE.indexOf(line));
+          
         } else {
           line.LINE = line.LINE;
         }
 
       });
+
       element.CODE.unshift(
         { "LINE": "*---------------------------------------------------------------------------------------*" },
         { "LINE": "* Método: " + element.NAME },
@@ -138,7 +164,7 @@ export class MethodsInfoComponent {
       console.log("Fuera del IF")
       console.log(element.CODE)
       totalDescriptions = counterMethodDesc + counterParamsDesc;
-      console.log("El total de descripciones es "+totalDescriptions)
+      console.log("El total de descripciones es " + totalDescriptions)
       // element.push([
       //   {"TOTALDESC": totalDescriptions }
       // ])

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 import { InheritanceService } from "../../../services/classes/inheritance/inheritance.service";
-
 import{ AppConstants} from '../../../constants'
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-inheritance', 
@@ -14,20 +13,36 @@ import{ AppConstants} from '../../../constants'
 })
 export class InheritanceComponent {
 // Se declaran las variables a usar en el compoonente inheritance
-  className: any = AppConstants.className;
+  className: any = this.setClassName();
   inheritance: any;
   redefinitions: any;
   durationWarning = 5;
   warningMessage: string = 'Ocurrió un error obteniendo los datos del servicio';
 // Método constructor
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: WebStorageService,
     private inheritanceService: InheritanceService,
     private _snackBar: MatSnackBar,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) 
   {
     this.getInheritanceByClass();
+    if(this.className == ''){
+      this.router.navigate([''])
+    }
   }
+
+  setClassName(){
+    let classSet;
+    classSet  = localStorage.getItem("className");
+    if(classSet === null || typeof classSet == undefined){
+      return '';
+    }else{
+    return classSet.replace(/["']/g, "");
+    }
+  }
+
 // Método para mostrar mensaje en snackBar
   showSnackBar(message: string) {
     this._snackBar.open(message, '', {

@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.mat-accordion{
+  padding-top: 20px;
+}
+
 label{
   justify-content: space-between;
   align-items: end;
@@ -46,9 +50,11 @@ mat-form-field {
 }
 
 .codeContainer{
+  //height: 300px;
   transform: none;
   background: #370e86;
   color: #fff;
   padding: 2em;
   line-height: 1;
+  //overflow-y: scroll;
 }

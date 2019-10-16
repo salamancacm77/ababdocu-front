@@ -1,0 +1,42 @@
+      <div>
+        <h2>Sigue los pasos</h2>
+      </div>
+      <mat-vertical-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup" (ngSubmit)="setObjectType()" #formObjectType="ngForm">
+            <ng-template matStepLabel>Selecciona el tipo de objeto</ng-template>
+            <mat-form-field>
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="firstCtrl" [(ngModel)]="objectType">
+                            <mat-option *ngFor="let type of types" [value]="type.value">
+                              {{type.viewValue}}
+                            </mat-option>
+                          </mat-select>
+            </mat-form-field>
+            <div>
+              <button type="button" mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup" (ngSubmit)="setName()" #formName="ngForm">
+            <ng-template matStepLabel>Escribe el nombre del objeto</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Nombre de Objeto" formControlName="secondCtrl" [(ngModel)]="className" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Regresar</button>
+              <button type="button" mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>¡Listo!</ng-template>
+          <span>Ahora consulta tu documentación</span>
+          <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button (click)="formName.ngSubmit.emit();formObjectType.ngSubmit.emit();">Consultar</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+      
